@@ -1,0 +1,101 @@
+{
+    "title": "FabricAdminClient",
+    "description": "Scale unit operation endpoints and objects.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/azsadmin-ScaleUnit/2016-05-01/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://adminmanagement.local.azurestack.external/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Authorization uses an Azure Active Directory OAuth2 flow.",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "ScaleUnits_List": {
+            "main": "./lib/actions/ScaleUnits_List.js",
+            "title": "Returns a list of all scale units at a location.",
+            "description": "Returns a list of all scale units at a location.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ScaleUnits_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ScaleUnits_Get": {
+            "main": "./lib/actions/ScaleUnits_Get.js",
+            "title": "Returns the requested scale unit.",
+            "description": "Returns the requested scale unit.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ScaleUnits_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ScaleUnits_ScaleOut": {
+            "main": "./lib/actions/ScaleUnits_ScaleOut.js",
+            "title": "Add a new scale unit.",
+            "description": "Add a new scale unit.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ScaleUnits_ScaleOut.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

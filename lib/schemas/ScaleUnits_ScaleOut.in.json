@@ -1,0 +1,55 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "location": {
+            "required": true,
+            "type": "string"
+        },
+        "scaleUnit": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "A list of input data that allows for adding a set of scale unit nodes.",
+            "properties": {
+                "awaitStorageConvergence": {
+                    "description": "Flag indicates if the operation should wait for storage to converge before returning.",
+                    "type": "boolean"
+                },
+                "nodeList": {
+                    "description": "List of nodes in the scale unit.",
+                    "items": {
+                        "description": "Input data that allows for adding a scale unit node.",
+                        "properties": {
+                            "bmcIpv4Address": {
+                                "description": "BMC address of the physical machine.",
+                                "type": "string",
+                                "x-ms-client-name": "BMCIPv4Address"
+                            },
+                            "computerName": {
+                                "description": "Computer name of the physical machine.",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string",
+            "default": "2016-05-01"
+        }
+    }
+}
